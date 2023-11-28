@@ -1,10 +1,17 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack'); //to access built-in plugins
+import 'webpack-dev-server';
+import path from "path";
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 
-module.exports = (env) => {
-    return {
+type Mode = 'production' | 'development'
+
+interface EnvVariables {
+    mode: Mode
+}
+
+export default (env: EnvVariables) => {
+    const config: webpack.Configuration = {
         mode: env.mode ?? 'development',
         entry: path.resolve(__dirname, 'src', 'index.ts'),
         output: {
@@ -29,4 +36,5 @@ module.exports = (env) => {
             new webpack.ProgressPlugin(), //лучше не использовать в проде тк силно замедляет сборку
         ],
     }
+    return config
 };
