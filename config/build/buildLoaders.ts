@@ -14,6 +14,26 @@ export function buildLoaders (options: BuildOptions): ModuleOptions['rules'] {
         }
     }
 
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    }
+
+    const svgLoader = {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: {
+            loader: '@svgr/webpack',
+            options: {
+                icon: true
+            }
+        },
+    }
+
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
@@ -31,5 +51,5 @@ export function buildLoaders (options: BuildOptions): ModuleOptions['rules'] {
         use: 'ts-loader',
         exclude: /node_modules/,
     }
-    return [cssLoader, tsLoader]
+    return [fileLoader, cssLoader, tsLoader, svgLoader]
 }
