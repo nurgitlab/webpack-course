@@ -1,5 +1,6 @@
 import {useState} from "react";
-import "./App.scss"
+import classes from "./App.module.scss"
+import {Link, Outlet} from "react-router-dom";
 
 export const App = () => {
     const [n, setN] = useState(0)
@@ -8,11 +9,16 @@ export const App = () => {
             Hello World
             {n}
             <button
-                className={"button"}
+                className={classes.button}
                 onClick={() => setN(n + 1)}
             >
                 +1
             </button>
+            <br/>
+            <Link to={'/About'}>about</Link>
+            <br/>
+            <Link to={'/shop'}>shop</Link>
+            <Outlet/>
         </div>
     )
 }
