@@ -9,7 +9,8 @@ export const App = () => {
     const [n, setN] = useState(0)
     return (
         <div className={"main"}>
-            Hello World
+            <h1>PLATFORM={__PLATFORM__}</h1>
+            Hello World Hot Reload!
             {n}
             <button
                 className={classes.button}
