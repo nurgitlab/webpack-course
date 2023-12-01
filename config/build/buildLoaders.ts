@@ -16,7 +16,7 @@ export function buildLoaders (options: BuildOptions): ModuleOptions['rules'] {
     }
 
     const fileLoader = {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|ico)$/i,
         use: [
             {
                 loader: 'file-loader',
