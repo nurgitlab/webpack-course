@@ -8,6 +8,7 @@ import {buildLoaders} from "./buildLoaders";
 import {buildResolvers} from "./buildResolvers";
 import {BuildOptions} from "./types/types";
 import {buildPlugins} from "./buildPlugins";
+import {minimizerPlugins} from "./minimizerPlugins";
 
 export function buildWebpack (options: BuildOptions): webpack.Configuration {
     const isDev = options.mode === 'development'
@@ -25,6 +26,9 @@ export function buildWebpack (options: BuildOptions): webpack.Configuration {
             rules: buildLoaders(options),
         },
         resolve: buildResolvers(options),
+        optimization: {
+            minimizer: minimizerPlugins(options),
+        },
         plugins: buildPlugins(options),
         devtool: isDev && "inline-source-map",
         devServer: buildDevServer(options),

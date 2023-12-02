@@ -60,5 +60,16 @@ export function buildLoaders (options: BuildOptions): ModuleOptions['rules'] {
         },
         exclude: /node_modules/,
     }
-    return [fileLoader, cssLoader, tsLoader, svgLoader]
+
+    const esbuildLoader = {
+        test: /\.(js|jsx|ts|tsx)?$/,
+        loader: 'esbuild-loader',
+        options: {
+            loader: 'tsx',
+            target: 'es2020'
+        },
+        exclude: /node_modules/
+    };
+
+    return [fileLoader, cssLoader, svgLoader, esbuildLoader]
 }

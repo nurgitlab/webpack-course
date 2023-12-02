@@ -5,8 +5,8 @@ import {BuildOptions} from "./types/types";
 import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer"
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import CopyWebpackPlugin from "copy-webpack-plugin";
 import path from "path";
+import {EsbuildPlugin} from "esbuild-loader";
 
 
 export function buildPlugins ({mode, paths, analyzer, platform}: BuildOptions): Configuration['plugins'] {
@@ -17,8 +17,10 @@ export function buildPlugins ({mode, paths, analyzer, platform}: BuildOptions): 
             template: paths.html,
             favicon: path.resolve(paths.public, 'favicon.ico'),
         }),
-        new DefinePlugin({
-            __PLATFORM__: JSON.stringify(platform)
+        new EsbuildPlugin({
+            define: {
+                __PLATFORM__: JSON.stringify(platform)
+            }
         }),
         new ForkTsCheckerWebpackPlugin(),
     ]
