@@ -1,4 +1,6 @@
-# webpack-course
+# Webpack Template
+
+Репа, где я примерно показано то, как примерно нужно натраивать вебпак.
 
 Loaders
 
